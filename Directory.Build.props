@@ -1,0 +1,5 @@
+<Project>
+  <PropertyGroup>
+    <GamePath>C:\SteamLibrary\steamapps\common\TheLongDark</GamePath>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,100 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<RootNamespace>AfflictionsAndBuffs</RootNamespace>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+		<NeutralLanguage>en-US</NeutralLanguage>
+		<AssemblyName>AfflictionsAndBuffs</AssemblyName>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	
+	<PropertyGroup>
+		<TheLongDarkPath>C:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Resources\Localization\Localization.json" />
+	</ItemGroup>
+
+
+
+	<PropertyGroup>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<Compile Include="Afflictions\HowDidYouDoThat.cs" />
+		<Compile Include="Afflictions\LulledByTheWind.cs" />
+		<Compile Include="Afflictions\LulledByTheWindRisk.cs" />
+		<Compile Include="Afflictions\Starving.cs" />
+		<Compile Include="Buffs\Determination.cs" />
+		<Compile Include="Buffs\FogsEmbrace.cs" />
+		<Compile Include="Buffs\LittleHeart.cs" />
+		<Compile Include="Buffs\BurningHeart.cs" />
+		<Compile Include="ConsoleCommands.cs" />
+		<Compile Include="Core.cs" />
+		<Compile Include="ModSaveData.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="SaveDataManager.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Icons\LulledByTheWind.png" />
+		<EmbeddedResource Include="Resources\Icons\LittleHeart.png" />
+		<EmbeddedResource Include="Resources\Icons\Determination.png" />
+		<EmbeddedResource Include="Resources\Icons\Starving.png" />
+		<EmbeddedResource Include="Resources\Icons\FogsEmbrace.png" />
+		<EmbeddedResource Include="Resources\Icons\BurningHeart.png" />
+		<EmbeddedResource Include="Resources\Icons\HowDidYouDoThat.png" /> 
+		<EmbeddedResource Include="Resources\Localization\Localization.json" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Reference Include="AfflictionComponent">
+			<HintPath>$(TheLongDarkPath)\Mods\AfflictionComponent.dll</HintPath>
+		</Reference>
+		<Reference Include="ModSettings">
+			<HintPath>$(TheLongDarkPath)\Mods\ModSettings.dll</HintPath>
+		</Reference>
+		<Reference Include="ModComponent">
+			<HintPath>$(TheLongDarkPath)\Mods\ModComponent.dll</HintPath>
+		</Reference>
+		<Reference Include="ModData">
+			<HintPath>$(TheLongDarkPath)\Mods\ModData.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="ApprovalUtilities" Version="7.0.0" />
+		<PackageReference Include="HarmonyX" Version="2.16.0" />
+		<PackageReference Include="Il2CppInterop.Common" Version="1.5.1" />
+		<PackageReference Include="Il2CppInterop.Runtime" Version="1.5.1" />
+		<PackageReference Include="LavaGang.MelonLoader" Version="0.7.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="STBlade.Modding.TLD.Il2CppAssemblies.Windows" Version="2.51.0" />
+		<PackageReference Include="STBlade.Modding.TLD.ModSettings" Version="1.9.0" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Using Include="System.Reflection" />
+		<Using Include="System.Diagnostics.CodeAnalysis" />
+		<Using Include="Il2Cpp" />
+		<Using Include="HarmonyLib" />
+		<Using Include="MelonLoader" />
+		<Using Include="UnityEngine" />
+		<Using Include="ModSettings" />
+		<Using Include="ModComponent" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Resources\Sounds\" />
+	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(TheLongDarkPath)/Mods" />
+	</Target>
+</Project>
