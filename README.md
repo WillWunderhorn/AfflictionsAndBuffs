@@ -4,7 +4,7 @@ This is a mod for **The Long Dark** by Hinterland Studio, Inc.
 
 This mod adds 3 more afflictions and 4 buffs!
 
----------------------
+**---------------------
 Afflictions:
 LulledByTheWind - You've spent a lot of time in the fresh air - if you stay out longer, you might start to feel sleepy.
 Starving - You've been starving for quite a while, your body is working itself to the bone
@@ -15,7 +15,7 @@ BurningHeart - You have added fuel to a strong, warm fire. Its comforting heat s
 Determination - The weather is clear! You feel much better!
 FogsEmbrace - You are surrounded by heavy fog. Wildlife is less aware of your presence.
 LittleHeart - ???
----------------------
+---------------------**
 
 ## Installation
 
