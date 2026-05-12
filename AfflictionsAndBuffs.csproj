@@ -31,6 +31,7 @@
 		<Compile Include="Afflictions\HowDidYouDoThat.cs" />
 		<Compile Include="Afflictions\LulledByTheWind.cs" />
 		<Compile Include="Afflictions\LulledByTheWindRisk.cs" />
+		<Compile Include="Afflictions\LunarSyndrome.cs" />
 		<Compile Include="Afflictions\Starving.cs" />
 		<Compile Include="Buffs\Determination.cs" />
 		<Compile Include="Buffs\FogsEmbrace.cs" />
@@ -51,6 +52,7 @@
 		<EmbeddedResource Include="Resources\Icons\FogsEmbrace.png" />
 		<EmbeddedResource Include="Resources\Icons\BurningHeart.png" />
 		<EmbeddedResource Include="Resources\Icons\HowDidYouDoThat.png" /> 
+		<EmbeddedResource Include="Resources\Icons\LunarSyndrome.png" /> 
 		<EmbeddedResource Include="Resources\Localization\Localization.json" />
 	</ItemGroup>
 	

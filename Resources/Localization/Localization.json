@@ -1,6 +1,7 @@
 {
   "GAMEPLAY_LulledByTheWindRiskName": {
     "English": "Lulled by the wind risk",
+    "Turkish": "Rüzgâr riskinin uyuşturucu etkisiyle",
     "French (France)": "Risque bercé par le vent",
     "German": "Risiko: Vom Wind eingelullt",
     "Ukrainian": "Ризик заспокоєння вітром",
@@ -9,12 +10,14 @@
   "GAMEPLAY_LulledByTheWindRiskCause": {
     "English": "Fresh air",
     "French (France)": "Air frais",
+    "Turkish": "Temiz hava",
     "German": "Frische Luft",
     "Ukrainian": "Свіже повітря",
     "Russian": "Свежий воздух"
   },
   "GAMEPLAY_LulledByTheWindRiskDescription": {
     "English": "You've spent a lot of time in the fresh air - if you stay out longer, you might start to feel sleepy.",
+    "Turkish": "Temiz havada epey zaman geçirdin; dışarıda daha fazla kalırsan uykun gelmeye başlayabilir.",
     "French (France)": "Vous avez passé beaucoup de temps à l'air frais — si vous restez dehors plus longtemps, vous pourriez commencer à vous sentir somnolent.",
     "German": "Du hast viel Zeit an der frischen Luft verbracht – wenn du länger draußen bleibst, könntest du schläfrig werden.",
     "Ukrainian": "Ви провели багато часу на свіжому повітрі — якщо залишитися надовго, вас може почати хилити в сон.",
@@ -23,6 +26,7 @@
 
   "GAMEPLAY_LulledByTheWindName": {
     "English": "Lulled by the wind",
+    "Turkish": "Rüzgârın sakinleştirici etkisi",
     "French (France)": "Bercé par le vent",
     "German": "Vom Wind eingelullt",
     "Ukrainian": "Заспокоєння вітром",
@@ -30,6 +34,7 @@
   },
   "GAMEPLAY_LulledByTheWindCause": {
     "English": "Fresh air",
+    "Turkish": "Temiz hava",
     "French (France)": "Air frais",
     "German": "Frische Luft",
     "Ukrainian": "Свіже повітря",
@@ -37,6 +42,7 @@
   },
   "GAMEPLAY_LulledByTheWindDescription": {
     "English": "You've spent a long time in the fresh air. Your lungs have filled with the lulling music of the wind... it would feel so nice to close your eyes, just for a second...",
+    "Turkish": "Uzun bir süre temiz havada vakit geçirdin. Ciğerlerin rüzgârın uyutucu melodisiyle doldu... Gözlerini bir saniyeliğine bile olsa kapatmak ne kadar da güzel olurdu...",
     "French (France)": "Vous avez passé longtemps à l'air frais. Vos poumons se sont remplis de la douce musique du vent... ce serait si agréable de fermer les yeux, juste un instant...",
     "German": "Du hast lange Zeit an der frischen Luft verbracht. Deine Lungen haben sich mit der sanften Musik des Windes gefüllt... es wäre so angenehm, die Augen zu schließen, nur für einen Moment...",
     "Ukrainian": "Ви провели довгий час на свіжому повітрі. Ваші легені наповнилися заспокійливою музикою вітру... так приємно було б просто заплющити очі, хоч на мить...",
@@ -45,6 +51,7 @@
 
   "GAMEPLAY_DeterminationName": {
     "English": "Determination",
+    "Turkish": "Kararlılık",
     "French (France)": "Détermination",
     "German": "Entschlossenheit",
     "Ukrainian": "Рішучість",
@@ -52,6 +59,7 @@
   },
   "GAMEPLAY_DeterminationCause": {
     "English": "Good weather",
+    "Turkish": "Güzel hava",
     "French (France)": "Beau temps",
     "German": "Gutes Wetter",
     "Ukrainian": "Гарна погода",
@@ -59,6 +67,7 @@
   },
   "GAMEPLAY_DeterminationDescription": {
     "English": "The weather is clear! You feel much better",
+    "Turkish": "Hava güneşli! Kendini çok daha iyi hissediyorsun",
     "French (France)": "Le temps est clair ! Vous vous sentez bien mieux.",
     "German": "Das Wetter ist klar! Du fühlst dich viel besser.",
     "Ukrainian": "Погода ясна! Ви почуваєтеся набагато краще.",
@@ -67,6 +76,7 @@
 
   "GAMEPLAY_StarvingName": {
     "English": "Starving",
+    "Turkish": "Açlıktan kıvranmak",
     "French (France)": "Affamé",
     "German": "Verhungernd",
     "Ukrainian": "Голод",
@@ -74,6 +84,7 @@
   },
   "GAMEPLAY_StarvingCause": {
     "English": "Continuous lack of food",
+    "Turkish": "Sürekli gıda kıtlığı",
     "French (France)": "Manque prolongé de nourriture",
     "German": "Anhaltender Nahrungsmangel",
     "Ukrainian": "Тривала відсутність їжі",
@@ -81,6 +92,7 @@
   },
   "GAMEPLAY_StarvingDescription": {
     "English": "You've been starving for quite a while, your body is working itself to the bone",
+    "Turkish": "Epey bir süredir açlık çekiyorsun, vücudun metabolizmandan yiyor.",
     "French (France)": "Ça fait un bon moment que vous crevez de faim, votre corps s'épuise jusqu'à l'os.",
     "German": "Du hungerst schon eine ganze Weile, dein Körper arbeitet sich bis auf die Knochen ab.",
     "Ukrainian": "Ви голодували вже довгий час, ваше тіло працює на межі можливостей.",
@@ -89,6 +101,7 @@
 
   "GAMEPLAY_LittleHeartName": {
     "English": "Little Heart",
+    "Turkish": "Küçük Kalp",
     "French (France)": "Petit Cœur",
     "German": "Kleines Herz",
     "Ukrainian": "Маленьке серце",
@@ -96,6 +109,7 @@
   },
   "GAMEPLAY_LittleHeartCause": {
     "English": "Faith",
+    "Turkish": "İnanç",
     "French (France)": "Foi",
     "German": "Glaube",
     "Ukrainian": "Віра",
@@ -103,6 +117,7 @@
   },
   "GAMEPLAY_LittleHeartDescription": {
     "English": "You are not alone in this cold world... Somewhere in the woods, there is another heart. Unlike the others, this one is full of kindness and love. Knowing it's there makes you stronger. Do not give up! An unseen companion believes in you!",
+    "Turkish": "Bu soğuk dünyada yalnız değilsin... Ormanın bir köşesinde, başka bir kalp var. Diğerlerinden farklı olarak, bu kalp şefkat ve sevgiyle dolu. Orada olduğunu bilmek sana güç veriyor. Pes etme! Görünmeyen bir dost sana inanıyor!",
     "French (France)": "Vous n'êtes pas seul dans ce monde glacé... Quelque part dans les bois bat un autre cœur. Contrairement aux autres, celui-ci est rempli de gentillesse et d'amour. Savoir qu'il existe vous rend plus fort. N'abandonnez pas ! Un compagnon invisible croit en vous !",
     "German": "Du bist nicht allein in dieser kalten Welt... Irgendwo im Wald schlägt ein anderes Herz. Im Gegensatz zu den anderen ist dieses voller Güte und Liebe. Zu wissen, dass es da ist, macht dich stärker. Gib nicht auf! Ein unsichtbarer Gefährte glaubt an dich!",
     "Ukrainian": "Ви не самотні в цьому холодному світі... Десь у лісі б'ється інше серце. На відміну від інших, воно повне доброти та любові. Знання, що воно є, робить вас сильнішими. Не здавайтеся! Незримий супутник вірить у вас!",
@@ -111,6 +126,7 @@
 
   "GAMEPLAY_FogsEmbraceName": {
     "English": "Fog's Embrace",
+    "Turkish": "Sis Çökmesi",
     "French (France)": "Étreinte du brouillard",
     "German": "Umarmung des Nebels",
     "Ukrainian": "Обійми туману",
@@ -118,6 +134,7 @@
   },
   "GAMEPLAY_FogsEmbraceCause": {
     "English": "Dense Fog",
+    "Turkish": "Yoğun Sis",
     "French (France)": "Brouillard dense",
     "German": "Dichter Nebel",
     "Ukrainian": "Густий туман",
@@ -125,14 +142,16 @@
   },
   "GAMEPLAY_FogsEmbraceDescription": {
     "English": "You are surrounded by heavy fog. Wildlife is less aware of your presence.",
+    "Turkish": "Etrafınız yoğun sisle kaplı. Vahşi hayvanlar sizin varlığınızın pek farkında değil.",
     "French (France)": "Vous êtes enveloppé d'un épais brouillard. La faune est moins consciente de votre présence.",
     "German": "Du bist von dichtem Nebel umhüllt. Die Wildtiere nehmen deine Anwesenheit weniger wahr.",
     "Ukrainian": "Ви оточені густим туманом. Дикі тварини гірше вас помічають.",
-    "Russian": "Вы окружены густым туманом. Диким животным сложнее вас обнаружить." 
+    "Russian": "Вы окружены густым туманом. Диким животным сложнее вас обнаружить."
   },
 
   "GAMEPLAY_BurningHeartName": {
     "English": "Burning Heart",
+    "Turkish": "Yanan Kalp",
     "French (France)": "Cœur Brûlant",
     "German": "Brennendes Herz",
     "Ukrainian": "Палке серце",
@@ -140,6 +159,7 @@
   },
   "GAMEPLAY_BurningHeartCause": {
     "English": "Strong Campfire",
+    "Turkish": "Güçlü Kamp Ateşi",
     "French (France)": "Feu ardent",
     "German": "Starkes Lagerfeuer",
     "Ukrainian": "Тепло від багаття",
@@ -147,7 +167,8 @@
   },
   "GAMEPLAY_BurningHeartDescription": {
     "English": "You have added fuel to a strong, warm fire. Its comforting heat still lingers in your heart.",
-    "French (France)": "Vous avez ajouté du combustible à un feu déjà puissant et chaleureux. Sa chaleur réconfortante persiste encore dans votre cœur.", 
+    "Turkish": "Güçlü ve sıcak bir ateşe odun ekledin. O rahatlatıcı sıcaklık hâlâ kalbinde hissediliyor.",
+    "French (France)": "Vous avez ajouté du combustible à un feu déjà puissant et chaleureux. Sa chaleur réconfortante persiste encore dans votre cœur.",
     "German": "Du hast einem starken, warmen Feuer Brennstoff hinzugefügt. Seine wohltuende Wärme bleibt noch in deinem Herzen.",
     "Ukrainian": "Ви підклали паливо до сильного й теплого вогнища. Його затишне тепло досі залишається у вашому серці.",
     "Russian": "Вы добавили топливо в сильный и тёплый костёр. Его уютное тепло до сих пор остаётся в вашем сердце."
@@ -155,6 +176,7 @@
 
   "GAMEPLAY_HowDidYouDoThatName": {
     "English": "How did you do that?",
+    "Turkish": "Bunu nasıl yaptın?",
     "French (France)": "Comment t’as fait ça ?",
     "German": "Wie hast du das geschafft?",
     "Ukrainian": "Як ви це зробили?",
@@ -162,6 +184,7 @@
   },
   "GAMEPLAY_HowDidYouDoThatCause": {
     "English": "1500 days of the long dark",
+    "Turkish": "1500 günlük uzun karanlık",
     "French (France)": "1500 jours dans le Grand Froid",
     "German": "1500 Tage in der Dunkelheit",
     "Ukrainian": "1500 днів у довгій темряві",
@@ -169,9 +192,61 @@
   },
   "GAMEPLAY_HowDidYouDoThatDescription": {
     "English": "I mean seriously... how? Are you still enjoying this save? I think you've discovered everything and everywhere in this cold world.",
+    "Turkish": "Cidden ama... nasıl oluyor bu? Hâlâ bu oyundan keyif alıyor musun? Bence bu soğuk dünyadaki her şeyi ve her yeri keşfetmişsindir.",
     "French (France)": "Sérieusement... comment ? Tu t’amuses encore sur cette sauvegarde ? J’ai l’impression que t’as déjà tout vu et tout exploré dans ce monde glacé.",
     "German": "Im Ernst... wie? Macht dir dieser Spielstand noch Spaß? Ich glaube, du hast in dieser kalten Welt wirklich schon alles gesehen und entdeckt.",
     "Ukrainian": "Ні, серйозно... як? Вам ще подобається ця гра? Мені здається, ви вже все побачили й усе відкрили в цьому холодному світі.",
     "Russian": "Нет, серьёзно... как? Тебе всё ещё нравится играть на этом сохранении? Мне кажется, ты уже знаешь всё и вся в этом холодном мире."
+  },
+
+  "GAMEPLAY_LunarSyndromeName": {
+    "English": "Lunar Syndrome",
+    "Turkish": "Ay Sendromu",
+    "French (France)": "Syndrome Lunaire",
+    "German": "Lunarsyndrom",
+    "Ukrainian": "Місячний синдром",
+    "Russian": "Лунный синдром"
+  },
+  "GAMEPLAY_LunarSyndromeCause": {
+    "English": "Moon",
+    "Turkish": "Ay",
+    "French (France)": "Lune",
+    "German": "Mond",
+    "Ukrainian": "Місяць",
+    "Russian": "Луна"
+  },
+  "GAMEPLAY_LunarSyndromeDescription": {
+    "English": "Wolves are influenced by the moon, their eyes are glowing and they can feel your fear. Beware of their teeth!",
+    "Turkish": "Kurtlar aydan etkilenir, gözleri parlar ve korkunuzu hissedebilirler. Dişlerine dikkat!",
+    "French (France)": "Les loups sont influencés par la lune, leurs yeux brillent et ils peuvent sentir votre peur. Méfiez-vous de leurs crocs !",
+    "German": "Wölfe werden vom Mond beeinflusst, ihre Augen leuchten und sie spüren Ihre Angst. Hüten Sie sich vor ihren Zähnen!",
+    "Ukrainian": "Вовки піддаються впливу місяця, їхні очі світяться, і вони відчувають ваш страх. Стережіться їхніх зубів!",
+    "Russian": "Волки подвластны луне, их глаза светятся, и они чувствуют ваш страх. Остерегайтесь их зубов!"
+  },
+
+
+  "GAMEPLAY_ Name": {
+    "English": "",
+    "Turkish": "",
+    "French (France)": "",
+    "German": "",
+    "Ukrainian": "",
+    "Russian": ""
+  },
+  "GAMEPLAY_Cause": {
+    "English": "",
+    "Turkish": "",
+    "French (France)": "",
+    "German": "",
+    "Ukrainian": "",
+    "Russian": ""
+  },
+  "GAMEPLAY_Description": {
+    "English": "",
+    "Turkish": "",
+    "French (France)": "",
+    "German": "",
+    "Ukrainian": "",
+    "Russian": ""
   }
 }

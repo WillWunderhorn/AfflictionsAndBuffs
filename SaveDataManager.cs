@@ -1,3 +1,7 @@
+﻿using System;
+using HarmonyLib;
+using Il2Cpp;
+using MelonLoader;
 using ModData;
 using Newtonsoft.Json;
 using AfflictionComponent.Components;
@@ -17,14 +21,22 @@ namespace AfflictionsAndBuffs
         public static float LulledByTheWindContinuousIndoorMinutes = 0f;
         public static float LulledByTheWindCooldownEndHours = 0f;
         public static float LulledByTheWindRiskShortCooldownEndHours = 0f;
+
         public static float StarvingCooldownEndHours = 0f;
         public static float LittleHeartCooldownEndHours = 0f;
+
         public static bool HowDidYouDoThatHasAppeared = false;
+
+        // NEW
+        public static bool LunarSyndromeActive = false;
+
         internal static void OnSaveGame()
         {
             try
             {
                 LulledByTheWindRiskPercentage = SnapshotRiskPercentageFromActiveAffliction();
+
+                LunarSyndromeActive = LunarSyndrome.IsActive;
 
                 var data = new ModSaveData
                 {
@@ -35,7 +47,9 @@ namespace AfflictionsAndBuffs
                     LulledByTheWindRiskShortCooldownEndHours = LulledByTheWindRiskShortCooldownEndHours,
                     StarvingCooldownEndHours = StarvingCooldownEndHours,
                     LittleHeartCooldownEndHours = LittleHeartCooldownEndHours,
-                    HowDidYouDoThatHasAppeared = HowDidYouDoThatHasAppeared
+                    HowDidYouDoThatHasAppeared = HowDidYouDoThatHasAppeared,
+
+                    LunarSyndromeActive = LunarSyndromeActive
                 };
 
                 string json = JsonConvert.SerializeObject(data);
@@ -68,9 +82,13 @@ namespace AfflictionsAndBuffs
                 LulledByTheWindContinuousIndoorMinutes = data?.LulledByTheWindContinuousIndoorMinutes ?? 0f;
                 LulledByTheWindCooldownEndHours = data?.LulledByTheWindCooldownEndHours ?? 0f;
                 LulledByTheWindRiskShortCooldownEndHours = data?.LulledByTheWindRiskShortCooldownEndHours ?? 0f;
+
                 StarvingCooldownEndHours = data?.StarvingCooldownEndHours ?? 0f;
                 LittleHeartCooldownEndHours = data?.LittleHeartCooldownEndHours ?? 0f;
+
                 HowDidYouDoThatHasAppeared = data?.HowDidYouDoThatHasAppeared ?? false;
+
+                LunarSyndromeActive = data?.LunarSyndromeActive ?? false;
 
                 PendingRiskRestore = LulledByTheWindRiskPercentage > 0f;
             }
@@ -81,16 +99,21 @@ namespace AfflictionsAndBuffs
             }
         }
 
-    internal static void OnNewGame()
+        internal static void OnNewGame()
         {
             LulledByTheWindRiskPercentage = 0f;
             LulledByTheWindOutdoorMinutes = 0f;
             LulledByTheWindContinuousIndoorMinutes = 0f;
             LulledByTheWindCooldownEndHours = 0f;
             LulledByTheWindRiskShortCooldownEndHours = 0f;
+
             StarvingCooldownEndHours = 0f;
             LittleHeartCooldownEndHours = 0f;
+
             HowDidYouDoThatHasAppeared = false;
+
+            LunarSyndromeActive = false;
+
             PendingRiskRestore = false;
         }
 
@@ -108,25 +131,50 @@ namespace AfflictionsAndBuffs
 
             return LulledByTheWindRiskPercentage;
         }
+
+        internal static void RestoreLunarOnLoad()
+        {
+            if (!LunarSyndromeActive)
+                return;
+
+            var mgr = AfflictionManager.GetAfflictionManagerInstance();
+            if (mgr == null || mgr.m_Afflictions == null)
+                return;
+
+            foreach (var aff in mgr.m_Afflictions)
+            {
+                if (aff is LunarSyndrome)
+                    return;
+            }
+
+            MelonLogger.Msg("[Lunar] Restoring from save");
+
+            var syndrome = new LunarSyndrome(AfflictionBodyArea.Chest);
+            syndrome.Start();
+        }
     }
 
-    [HarmonyPatch(typeof(SaveGameSlots), nameof(SaveGameSlots.WriteSlotToDisk), new Type[] { typeof(SlotData), typeof(SaveGameSlots.Timestamp) })]
+    [HarmonyPatch(typeof(SaveGameSlots), nameof(SaveGameSlots.WriteSlotToDisk),
+        new Type[] { typeof(SlotData), typeof(SaveGameSlots.Timestamp) })]
     internal class SaveDataWritePatch
     {
         private static void Prefix() => SaveDataManager.OnSaveGame();
     }
 
-    [HarmonyPatch(typeof(GameManager), nameof(GameManager.LoadSaveGameSlot), new Type[] { typeof(string), typeof(int) })]
+    [HarmonyPatch(typeof(GameManager), nameof(GameManager.LoadSaveGameSlot),
+        new Type[] { typeof(string), typeof(int) })]
     internal class SaveDataLoadPatch
     {
         private static void Postfix()
         {
             SaveDataManager.OnLoadGame();
             LulledByTheWindRisk.RestoreOutdoorTimerOnLoad();
+            SaveDataManager.RestoreLunarOnLoad();
         }
     }
 
-    [HarmonyPatch(typeof(SaveGameSlots), nameof(SaveGameSlots.CreateSlot), new Type[] { typeof(string), typeof(SaveSlotType), typeof(uint), typeof(Episode) })]
+    [HarmonyPatch(typeof(SaveGameSlots), nameof(SaveGameSlots.CreateSlot),
+        new Type[] { typeof(string), typeof(SaveSlotType), typeof(uint), typeof(Episode) })]
     internal class SaveDataNewGamePatch
     {
         private static void Postfix()

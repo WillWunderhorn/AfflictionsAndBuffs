@@ -12,6 +12,7 @@ namespace AfflictionsAndBuffs
         public float LittleHeartCooldownEndHours;
         public bool BurningHeart;
         public bool HowDidYouDoThatHasAppeared;
+        public bool LunarSyndromeActive;
 
     }
 }

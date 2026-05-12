@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using AfflictionComponent.Components;
 using AfflictionsAndBuffs.Afflictions;
 using AfflictionsAndBuffs.Buffs;
@@ -185,6 +185,31 @@ internal static class ConsoleCommands
             }
         }));
 
+        // ==================== LUNAR SYNDROME ====================
+        uConsole.RegisterCommand("lunar", new Action(() =>
+        {
+            var mgr = AfflictionManager.GetAfflictionManagerInstance();
+            if (mgr == null) return;
+
+            foreach (var aff in mgr.m_Afflictions)
+                if (aff is LunarSyndrome) return;
+
+            var affliction = new LunarSyndrome(AfflictionBodyArea.Chest);
+            affliction.Start();
+        }));
+
+        uConsole.RegisterCommand("lunar_cure", new Action(() =>
+        {
+            var mgr = AfflictionManager.GetAfflictionManagerInstance();
+            if (mgr == null || mgr.m_Afflictions == null) return;
+
+            for (int i = mgr.m_Afflictions.Count - 1; i >= 0; i--)
+            {
+                if (mgr.m_Afflictions[i] is LunarSyndrome)
+                    mgr.m_Afflictions[i].Cure();
+            }
+        }));
+
         uConsole.RegisterCommand("lullrisk", new Action(() => uConsole.RunCommand("lullrisk")));
         uConsole.RegisterCommand("lulldebuff", new Action(() => uConsole.RunCommand("lulldebuff")));
 
@@ -205,5 +230,8 @@ internal static class ConsoleCommands
 
         uConsole.RegisterCommand("hdyd", new Action(() => uConsole.RunCommand("hdyd")));
         uConsole.RegisterCommand("hdyd_cure", new Action(() => uConsole.RunCommand("hdyd_cure")));
+
+        uConsole.RegisterCommand("lunar", new Action(() => uConsole.RunCommand("lunar")));
+        uConsole.RegisterCommand("lunarcure", new Action(() => uConsole.RunCommand("lunar_cure")));
     }
 }

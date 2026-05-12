@@ -1,4 +1,4 @@
-using AfflictionComponent.Components;
+﻿using AfflictionComponent.Components;
 using AfflictionComponent.Enums;
 using AfflictionComponent.Interfaces;
 using HarmonyLib;
@@ -6,24 +6,22 @@ using Il2Cpp;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MelonLoader;
 
 namespace AfflictionsAndBuffs.Buffs
 {
     public class FogsEmbrace : CustomAffliction, IInstance, IBuff
     {
-        public InstanceType Type { get; set; } = InstanceType.Single;
+        public InstanceType Type { get; set; } = InstanceType.Single;
         public float Duration { get; set; } = 1f;
         public float EndTime { get; set; }
-
         public bool Buff { get; set; } = true;
         public bool BuffCold { get; set; }
         public bool BuffFatigue { get; set; }
         public bool BuffHunger { get; set; }
         public bool BuffThirst { get; set; }
-
         private static float s_LastCheckHours = -1f;
-        private const float CHECK_INTERVAL_MINUTES = 10f;
-
+        private const float CHECK_INTERVAL_MINUTES = 5f;
         private static float s_RemoveTime = -1f;
         private const float REMOVE_DELAY_MINUTES = 10f;
 
@@ -41,18 +39,14 @@ namespace AfflictionsAndBuffs.Buffs
         {
         }
 
-        public override void OnUpdate()
-        {
-        }
+        public override void OnUpdate() { }
 
         public void OnCure()
         {
             s_RemoveTime = -1f;
         }
 
-        public void OnFoundExistingInstance(CustomAffliction existingAffliction)
-        {
-        }
+        public void OnFoundExistingInstance(CustomAffliction existingAffliction) { }
 
         public static bool IsFogsEmbraceActive()
         {
@@ -104,15 +98,13 @@ namespace AfflictionsAndBuffs.Buffs
 
             var weatherComp = GameManager.GetWeatherComponent();
             string currentWeather = weatherComp.GetWeatherStage().ToString();
-
             bool isFoggy = IsFoggyWeather(currentWeather);
 
             if (isOutdoors && isFoggy)
             {
                 if (!IsFogsEmbraceActive())
-                {
                     StartBuff();
-                }
+
                 s_RemoveTime = -1f;
             }
             else
@@ -137,7 +129,7 @@ namespace AfflictionsAndBuffs.Buffs
 
             return weather.IsIndoorScene() ||
                    weather.IsIndoorEnvironment() ||
-                   GameManager.GetPlayerInVehicle().IsInside() ||
+                   (GameManager.GetPlayerInVehicle() != null && GameManager.GetPlayerInVehicle().IsInside()) ||
                    GameManager.GetSnowShelterManager().PlayerInShelter();
         }
 
@@ -170,6 +162,11 @@ namespace AfflictionsAndBuffs.Buffs
             public float DetectionRange;
             public float DetectionFOV;
             public float MaxPlayerApproachDistanceToInvestigateFood;
+            public float SmellRange;
+            public float HearFootstepsRange;
+            public float HearFootstepsRangeWhileFeeding;
+            public float MaxSurvivorDistanceToPlayerForTargetting;
+            public float MinSmellDistance;
         }
 
         [HarmonyPatch(typeof(BaseAi), nameof(BaseAi.Awake))]
@@ -177,17 +174,27 @@ namespace AfflictionsAndBuffs.Buffs
         {
             private static void Postfix(BaseAi __instance)
             {
-                if (__instance.m_AiSubType != AiSubType.Wolf &&
-                    __instance.m_AiSubType != AiSubType.Bear &&
-                    __instance.m_AiSubType != AiSubType.Moose &&
-                    __instance.m_AiSubType != AiSubType.Cougar) return;
+                if (__instance == null) return;
 
-                OriginalValues[__instance] = new OriginalAiValues
+                AiSubType type = __instance.m_AiSubType;
+                if (type != AiSubType.Wolf && type != AiSubType.Bear && type != AiSubType.Stag &&
+                    type != AiSubType.Rabbit && type != AiSubType.Moose && type != AiSubType.Cougar)
+                    return;
+
+                if (!OriginalValues.ContainsKey(__instance))
                 {
-                    DetectionRange = __instance.m_DetectionRange,
-                    DetectionFOV = __instance.m_DetectionFOV,
-                    MaxPlayerApproachDistanceToInvestigateFood = __instance.m_MaxPlayerApproachDistanceToInvestigateFood
-                };
+                    OriginalValues[__instance] = new OriginalAiValues
+                    {
+                        DetectionRange = __instance.m_DetectionRange,
+                        DetectionFOV = __instance.m_DetectionFOV,
+                        MaxPlayerApproachDistanceToInvestigateFood = __instance.m_MaxPlayerApproachDistanceToInvestigateFood,
+                        SmellRange = __instance.m_SmellRange,
+                        HearFootstepsRange = __instance.m_HearFootstepsRange,
+                        HearFootstepsRangeWhileFeeding = __instance.m_HearFootstepsRangeWhileFeeding,
+                        MaxSurvivorDistanceToPlayerForTargetting = __instance.m_MaxSurvivorDistanceToPlayerForTargetting,
+                        MinSmellDistance = __instance.m_MinSmellDistance
+                    };
+                }
             }
         }
 
@@ -196,25 +203,47 @@ namespace AfflictionsAndBuffs.Buffs
         {
             private static void Postfix(BaseAi __instance)
             {
-                if (__instance.m_AiSubType != AiSubType.Wolf &&
-                    __instance.m_AiSubType != AiSubType.Bear &&
-                    __instance.m_AiSubType != AiSubType.Moose) return;
+                if (__instance == null) return;
 
-                if (!OriginalValues.TryGetValue(__instance, out var original)) return;
+                if (!OriginalValues.TryGetValue(__instance, out var original))
+                {
+                    original = new OriginalAiValues
+                    {
+                        DetectionRange = __instance.m_DetectionRange,
+                        DetectionFOV = __instance.m_DetectionFOV,
+                        MaxPlayerApproachDistanceToInvestigateFood = __instance.m_MaxPlayerApproachDistanceToInvestigateFood,
+                        SmellRange = __instance.m_SmellRange,
+                        HearFootstepsRange = __instance.m_HearFootstepsRange,
+                        HearFootstepsRangeWhileFeeding = __instance.m_HearFootstepsRangeWhileFeeding,
+                        MaxSurvivorDistanceToPlayerForTargetting = __instance.m_MaxSurvivorDistanceToPlayerForTargetting,
+                        MinSmellDistance = __instance.m_MinSmellDistance
+                    };
+                    OriginalValues[__instance] = original;
+                }
 
                 bool shouldReduce = IsFogsEmbraceActive();
 
                 if (shouldReduce)
                 {
-                    __instance.m_DetectionRange = original.DetectionRange * 0.7f;
-                    __instance.m_DetectionFOV = original.DetectionFOV * 0.7f;
-                    __instance.m_MaxPlayerApproachDistanceToInvestigateFood = original.MaxPlayerApproachDistanceToInvestigateFood * 0.7f;
+                    __instance.m_DetectionRange = 0.7f;
+                    __instance.m_DetectionFOV = 0.7f;
+                    __instance.m_MaxPlayerApproachDistanceToInvestigateFood = 0.7f;
+                    __instance.m_SmellRange = 0.7f;
+                    __instance.m_HearFootstepsRange = 0.7f;
+                    __instance.m_HearFootstepsRangeWhileFeeding = 0.7f;
+                    __instance.m_MaxSurvivorDistanceToPlayerForTargetting = 0.7f;
+                    __instance.m_MinSmellDistance = 0.7f;
                 }
                 else
                 {
                     __instance.m_DetectionRange = original.DetectionRange;
                     __instance.m_DetectionFOV = original.DetectionFOV;
                     __instance.m_MaxPlayerApproachDistanceToInvestigateFood = original.MaxPlayerApproachDistanceToInvestigateFood;
+                    __instance.m_SmellRange = original.SmellRange;
+                    __instance.m_HearFootstepsRange = original.HearFootstepsRange;
+                    __instance.m_HearFootstepsRangeWhileFeeding = original.HearFootstepsRangeWhileFeeding;
+                    __instance.m_MaxSurvivorDistanceToPlayerForTargetting = original.MaxSurvivorDistanceToPlayerForTargetting;
+                    __instance.m_MinSmellDistance = original.MinSmellDistance;
                 }
             }
         }

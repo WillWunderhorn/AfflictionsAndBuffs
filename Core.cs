@@ -1,4 +1,4 @@
-﻿using AfflictionComponent.Components;
+using AfflictionComponent.Components;
 using AfflictionsAndBuffs.Afflictions;
 using AfflictionsAndBuffs.Buffs;
 using LocalizationUtilities;
@@ -39,6 +39,7 @@ namespace AfflictionsAndBuffs
             FogsEmbrace.UpdateFogBuff();
             HowDidYouDoThat.UpdateHowDidYouDoThat();
             BurningHeart.UpdateBurningHeart();
+            LunarSyndrome.UpdateLunarSyndrome();
         }
 
         private static string LoadEmbeddedLocalization()
