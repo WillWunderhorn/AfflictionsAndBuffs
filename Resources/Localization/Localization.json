@@ -5,7 +5,8 @@
     "French (France)": "Risque bercé par le vent",
     "German": "Risiko: Vom Wind eingelullt",
     "Ukrainian": "Ризик заспокоєння вітром",
-    "Russian": "Риск колыбельной ветра"
+    "Russian": "Риск колыбельной ветра",
+    "Turkish": "Rüzgâr riskinin uyuşturucu etkisiyle"
   },
   "GAMEPLAY_LulledByTheWindRiskCause": {
     "English": "Fresh air",
@@ -13,7 +14,8 @@
     "Turkish": "Temiz hava",
     "German": "Frische Luft",
     "Ukrainian": "Свіже повітря",
-    "Russian": "Свежий воздух"
+    "Russian": "Свежий воздух",
+    "Turkish": "Temiz hava"
   },
   "GAMEPLAY_LulledByTheWindRiskDescription": {
     "English": "You've spent a lot of time in the fresh air - if you stay out longer, you might start to feel sleepy.",
@@ -21,7 +23,8 @@
     "French (France)": "Vous avez passé beaucoup de temps à l'air frais — si vous restez dehors plus longtemps, vous pourriez commencer à vous sentir somnolent.",
     "German": "Du hast viel Zeit an der frischen Luft verbracht – wenn du länger draußen bleibst, könntest du schläfrig werden.",
     "Ukrainian": "Ви провели багато часу на свіжому повітрі — якщо залишитися надовго, вас може почати хилити в сон.",
-    "Russian": "Вы провели много времени на свежем воздухе — если задержаться ещё немного, вас может начать клонить в сон."
+    "Russian": "Вы провели много времени на свежем воздухе — если задержаться ещё немного, вас может начать клонить в сон.",
+    "Turkish": "Temiz havada epey zaman geçirdin; dışarıda daha fazla kalırsan uykun gelmeye başlayabilir."
   },
 
   "GAMEPLAY_LulledByTheWindName": {
@@ -30,7 +33,8 @@
     "French (France)": "Bercé par le vent",
     "German": "Vom Wind eingelullt",
     "Ukrainian": "Заспокоєння вітром",
-    "Russian": "Колыбельная ветра"
+    "Russian": "Колыбельная ветра",
+    "Turkish": "Rüzgârın sakinleştirici etkisi"
   },
   "GAMEPLAY_LulledByTheWindCause": {
     "English": "Fresh air",
@@ -38,7 +42,8 @@
     "French (France)": "Air frais",
     "German": "Frische Luft",
     "Ukrainian": "Свіже повітря",
-    "Russian": "Свежий воздух"
+    "Russian": "Свежий воздух",
+    "Turkish": "Temiz hava"
   },
   "GAMEPLAY_LulledByTheWindDescription": {
     "English": "You've spent a long time in the fresh air. Your lungs have filled with the lulling music of the wind... it would feel so nice to close your eyes, just for a second...",
@@ -46,7 +51,8 @@
     "French (France)": "Vous avez passé longtemps à l'air frais. Vos poumons se sont remplis de la douce musique du vent... ce serait si agréable de fermer les yeux, juste un instant...",
     "German": "Du hast lange Zeit an der frischen Luft verbracht. Deine Lungen haben sich mit der sanften Musik des Windes gefüllt... es wäre so angenehm, die Augen zu schließen, nur für einen Moment...",
     "Ukrainian": "Ви провели довгий час на свіжому повітрі. Ваші легені наповнилися заспокійливою музикою вітру... так приємно було б просто заплющити очі, хоч на мить...",
-    "Russian": "Вы провели много времени на свежем воздухе. Ваши лёгкие наполнились убаюкивающей музыкой ветра... было бы так приятно закрыть глаза хотя бы на секунду..."
+    "Russian": "Вы провели много времени на свежем воздухе. Ваши лёгкие наполнились убаюкивающей музыкой ветра... было бы так приятно закрыть глаза хотя бы на секунду...",
+    "Turkish": "Uzun bir süre temiz havada vakit geçirdin. Ciğerlerin rüzgârın uyutucu melodisiyle doldu... Gözlerini bir saniyeliğine bile olsa kapatmak ne kadar da güzel olurdu..."
   },
 
   "GAMEPLAY_DeterminationName": {
@@ -55,7 +61,8 @@
     "French (France)": "Détermination",
     "German": "Entschlossenheit",
     "Ukrainian": "Рішучість",
-    "Russian": "Решимость"
+    "Russian": "Решимость",
+    "Turkish": "Kararlılık"
   },
   "GAMEPLAY_DeterminationCause": {
     "English": "Good weather",
@@ -63,7 +70,8 @@
     "French (France)": "Beau temps",
     "German": "Gutes Wetter",
     "Ukrainian": "Гарна погода",
-    "Russian": "Хорошая погода"
+    "Russian": "Хорошая погода",
+    "Turkish": "Güzel hava"
   },
   "GAMEPLAY_DeterminationDescription": {
     "English": "The weather is clear! You feel much better",
@@ -71,7 +79,8 @@
     "French (France)": "Le temps est clair ! Vous vous sentez bien mieux.",
     "German": "Das Wetter ist klar! Du fühlst dich viel besser.",
     "Ukrainian": "Погода ясна! Ви почуваєтеся набагато краще.",
-    "Russian": "На небе ни облачка! Вы чувствуете себя намного лучше."
+    "Russian": "На небе ни облачка! Вы чувствуете себя намного лучше.",
+    "Turkish": "Hava güneşli! Kendini çok daha iyi hissediyorsun"
   },
 
   "GAMEPLAY_StarvingName": {
@@ -80,7 +89,8 @@
     "French (France)": "Affamé",
     "German": "Verhungernd",
     "Ukrainian": "Голод",
-    "Russian": "Голодание"
+    "Russian": "Голодание",
+    "Turkish": "Açlıktan kıvranmak"
   },
   "GAMEPLAY_StarvingCause": {
     "English": "Continuous lack of food",
@@ -88,7 +98,8 @@
     "French (France)": "Manque prolongé de nourriture",
     "German": "Anhaltender Nahrungsmangel",
     "Ukrainian": "Тривала відсутність їжі",
-    "Russian": "Продолжительная нехватка пищи"
+    "Russian": "Продолжительная нехватка пищи",
+    "Turkish": "Sürekli gıda kıtlığı"
   },
   "GAMEPLAY_StarvingDescription": {
     "English": "You've been starving for quite a while, your body is working itself to the bone",
@@ -96,7 +107,8 @@
     "French (France)": "Ça fait un bon moment que vous crevez de faim, votre corps s'épuise jusqu'à l'os.",
     "German": "Du hungerst schon eine ganze Weile, dein Körper arbeitet sich bis auf die Knochen ab.",
     "Ukrainian": "Ви голодували вже довгий час, ваше тіло працює на межі можливостей.",
-    "Russian": "Вы голодали продолжительное время, ваше тело работает на износ."
+    "Russian": "Вы голодали продолжительное время, ваше тело работает на износ.",
+    "Turkish": "Epey bir süredir açlık çekiyorsun, vücudun metabolizmandan yiyor."
   },
 
   "GAMEPLAY_LittleHeartName": {
@@ -105,7 +117,8 @@
     "French (France)": "Petit Cœur",
     "German": "Kleines Herz",
     "Ukrainian": "Маленьке серце",
-    "Russian": "Маленькое сердечко"
+    "Russian": "Маленькое сердечко",
+    "Turkish": "Küçük Kalp"
   },
   "GAMEPLAY_LittleHeartCause": {
     "English": "Faith",
@@ -113,7 +126,8 @@
     "French (France)": "Foi",
     "German": "Glaube",
     "Ukrainian": "Віра",
-    "Russian": "Вера"
+    "Russian": "Вера",
+    "Turkish": "İnanç"
   },
   "GAMEPLAY_LittleHeartDescription": {
     "English": "You are not alone in this cold world... Somewhere in the woods, there is another heart. Unlike the others, this one is full of kindness and love. Knowing it's there makes you stronger. Do not give up! An unseen companion believes in you!",
@@ -121,7 +135,8 @@
     "French (France)": "Vous n'êtes pas seul dans ce monde glacé... Quelque part dans les bois bat un autre cœur. Contrairement aux autres, celui-ci est rempli de gentillesse et d'amour. Savoir qu'il existe vous rend plus fort. N'abandonnez pas ! Un compagnon invisible croit en vous !",
     "German": "Du bist nicht allein in dieser kalten Welt... Irgendwo im Wald schlägt ein anderes Herz. Im Gegensatz zu den anderen ist dieses voller Güte und Liebe. Zu wissen, dass es da ist, macht dich stärker. Gib nicht auf! Ein unsichtbarer Gefährte glaubt an dich!",
     "Ukrainian": "Ви не самотні в цьому холодному світі... Десь у лісі б'ється інше серце. На відміну від інших, воно повне доброти та любові. Знання, що воно є, робить вас сильнішими. Не здавайтеся! Незримий супутник вірить у вас!",
-    "Russian": "Вы не одиноки в этом холодном мире... Где-то в лесу есть другое сердце. В отличие от остальных, оно полно добра и любви. Осознание, что оно есть, делает вас сильнее. Не сдавайтесь! Незримый друг верит в вас!"
+    "Russian": "Вы не одиноки в этом холодном мире... Где-то в лесу есть другое сердце. В отличие от остальных, оно полно добра и любви. Осознание, что оно есть, делает вас сильнее. Не сдавайтесь! Незримый друг верит в вас!",
+    "Turkish": "Bu soğuk dünyada yalnız değilsin... Ormanın bir köşesinde, başka bir kalp var. Diğerlerinden farklı olarak, bu kalp şefkat ve sevgiyle dolu. Orada olduğunu bilmek sana güç veriyor. Pes etme! Görünmeyen bir dost sana inanıyor!"
   },
 
   "GAMEPLAY_FogsEmbraceName": {
@@ -130,7 +145,8 @@
     "French (France)": "Étreinte du brouillard",
     "German": "Umarmung des Nebels",
     "Ukrainian": "Обійми туману",
-    "Russian": "Объятия тумана"
+    "Russian": "Объятия тумана",
+    "Turkish": "Sis Çökmesi"
   },
   "GAMEPLAY_FogsEmbraceCause": {
     "English": "Dense Fog",
@@ -138,7 +154,8 @@
     "French (France)": "Brouillard dense",
     "German": "Dichter Nebel",
     "Ukrainian": "Густий туман",
-    "Russian": "Густой туман"
+    "Russian": "Густой туман",
+    "Turkish": "Yoğun Sis"
   },
   "GAMEPLAY_FogsEmbraceDescription": {
     "English": "You are surrounded by heavy fog. Wildlife is less aware of your presence.",
@@ -155,7 +172,8 @@
     "French (France)": "Cœur Brûlant",
     "German": "Brennendes Herz",
     "Ukrainian": "Палке серце",
-    "Russian": "Пылающее сердце"
+    "Russian": "Пылающее сердце",
+    "Turkish": "Yanan Kalp"
   },
   "GAMEPLAY_BurningHeartCause": {
     "English": "Strong Campfire",
@@ -163,7 +181,8 @@
     "French (France)": "Feu ardent",
     "German": "Starkes Lagerfeuer",
     "Ukrainian": "Тепло від багаття",
-    "Russian": "Тепло от костра"
+    "Russian": "Тепло от костра",
+    "Turkish": "Güçlü Kamp Ateşi"
   },
   "GAMEPLAY_BurningHeartDescription": {
     "English": "You have added fuel to a strong, warm fire. Its comforting heat still lingers in your heart.",
@@ -171,7 +190,8 @@
     "French (France)": "Vous avez ajouté du combustible à un feu déjà puissant et chaleureux. Sa chaleur réconfortante persiste encore dans votre cœur.",
     "German": "Du hast einem starken, warmen Feuer Brennstoff hinzugefügt. Seine wohltuende Wärme bleibt noch in deinem Herzen.",
     "Ukrainian": "Ви підклали паливо до сильного й теплого вогнища. Його затишне тепло досі залишається у вашому серці.",
-    "Russian": "Вы добавили топливо в сильный и тёплый костёр. Его уютное тепло до сих пор остаётся в вашем сердце."
+    "Russian": "Вы добавили топливо в сильный и тёплый костёр. Его уютное тепло до сих пор остаётся в вашем сердце.",
+    "Turkish": "Güçlü ve sıcak bir ateşe odun ekledin. O rahatlatıcı sıcaklık hâlâ kalbinde hissediliyor."
   },
 
   "GAMEPLAY_HowDidYouDoThatName": {
@@ -180,7 +200,8 @@
     "French (France)": "Comment t’as fait ça ?",
     "German": "Wie hast du das geschafft?",
     "Ukrainian": "Як ви це зробили?",
-    "Russian": "Как вы это сделали?"
+    "Russian": "Как вы это сделали?",
+    "Turkish": "Bunu nasıl yaptın?"
   },
   "GAMEPLAY_HowDidYouDoThatCause": {
     "English": "1500 days of the long dark",
@@ -188,7 +209,8 @@
     "French (France)": "1500 jours dans le Grand Froid",
     "German": "1500 Tage in der Dunkelheit",
     "Ukrainian": "1500 днів у довгій темряві",
-    "Russian": "1500 дней выживания"
+    "Russian": "1500 дней выживания",
+    "Turkish": "1500 günlük uzun karanlık"
   },
   "GAMEPLAY_HowDidYouDoThatDescription": {
     "English": "I mean seriously... how? Are you still enjoying this save? I think you've discovered everything and everywhere in this cold world.",
