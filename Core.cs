@@ -36,7 +36,7 @@ namespace AfflictionsAndBuffs
             Determination.UpdateWeatherBuff();
             Starving.UpdateStarving();
             LittleHeart.UpdateLittleHeart();
-            FogsEmbrace.UpdateFogBuff();
+            FogsEmbrace.UpdateFogBuff(); 
             HowDidYouDoThat.UpdateHowDidYouDoThat();
             BurningHeart.UpdateBurningHeart();
             LunarSyndrome.UpdateLunarSyndrome();
