@@ -2,9 +2,7 @@ using AfflictionComponent.Components;
 using AfflictionsAndBuffs.Afflictions;
 using AfflictionsAndBuffs.Buffs;
 using LocalizationUtilities;
-
-[assembly: MelonInfo(typeof(AfflictionsAndBuffs.Core), "AfflictionsAndBuffs", "1.0.0", "LittleWolfStorm", null)]
-[assembly: MelonGame("Hinterland", "TheLongDark")]
+using MelonLoader;
 
 namespace AfflictionsAndBuffs
 {
@@ -17,6 +15,7 @@ namespace AfflictionsAndBuffs
             Instance = this;
 
             string json = LoadEmbeddedLocalization();
+
             if (json != null)
                 LocalizationManager.LoadJsonLocalization(json);
 
@@ -29,6 +28,7 @@ namespace AfflictionsAndBuffs
                 return;
 
             var tod = GameManager.GetTimeOfDayComponent();
+
             if (tod == null)
                 return;
 
@@ -36,7 +36,7 @@ namespace AfflictionsAndBuffs
             Determination.UpdateWeatherBuff();
             Starving.UpdateStarving();
             LittleHeart.UpdateLittleHeart();
-            FogsEmbrace.UpdateFogBuff(); 
+            FogsEmbrace.UpdateFogBuff();
             HowDidYouDoThat.UpdateHowDidYouDoThat();
             BurningHeart.UpdateBurningHeart();
             LunarSyndrome.UpdateLunarSyndrome();
@@ -46,12 +46,19 @@ namespace AfflictionsAndBuffs
         {
             try
             {
-                const string resourceName = "AfflictionsAndBuffs.Resources.Localization.Localization.json";
+                const string resourceName =
+                    "AfflictionsAndBuffs.Resources.Localization.Localization.json";
 
-                using var stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-                if (stream == null) return null;
+                using var stream =
+                    System.Reflection.Assembly
+                        .GetExecutingAssembly()
+                        .GetManifestResourceStream(resourceName);
+
+                if (stream == null)
+                    return null;
 
                 using var reader = new System.IO.StreamReader(stream);
+
                 return reader.ReadToEnd();
             }
             catch
