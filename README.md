@@ -2,7 +2,7 @@
 
 This is a mod for **The Long Dark** by Hinterland Studio, Inc.
 
-This mod adds 3 more afflictions and 4 buffs!
+This mod adds 4 more afflictions and 4 buffs!
 
 ## Installation
 
