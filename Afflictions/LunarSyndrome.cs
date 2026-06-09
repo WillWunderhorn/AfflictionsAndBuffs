@@ -17,6 +17,8 @@ namespace AfflictionsAndBuffs.Afflictions
         public static bool IsActive { get; private set; } = false;
 
         private static float s_LastCheckHours = -1f;
+        private const float CHECK_INTERVAL_MINUTES = 10f;
+
         private float m_IndoorTimer = 0f;
         private float m_LastIndoorHours = -1f;
         private float m_TargetCureDelay = -1f;
@@ -34,7 +36,7 @@ namespace AfflictionsAndBuffs.Afflictions
                 true)
         {
             IsActive = true;
-
+            MelonLogger.Msg("[LunarSyndrome] Activated - Wolves are more alert under the moon");
             InitializeExistingAnimals();
         }
 
@@ -87,6 +89,7 @@ namespace AfflictionsAndBuffs.Afflictions
             m_IndoorTimer = 0f;
             m_TargetCureDelay = -1f;
             m_LastIndoorHours = -1f;
+            MelonLogger.Msg("[LunarSyndrome] Affliction cured");
         }
 
         public static void UpdateLunarSyndrome()
@@ -96,10 +99,15 @@ namespace AfflictionsAndBuffs.Afflictions
             if (tod == null || weather == null) return;
 
             float currentHours = tod.GetHoursPlayedNotPaused();
+
             if (s_LastCheckHours < 0f)
                 s_LastCheckHours = currentHours;
 
-            float deltaMinutes = Mathf.Clamp((currentHours - s_LastCheckHours) * 60f, 0f, 0.25f);
+            float minutesSinceLastCheck = (currentHours - s_LastCheckHours) * 60f;
+
+            if (minutesSinceLastCheck < CHECK_INTERVAL_MINUTES)
+                return;
+
             s_LastCheckHours = currentHours;
 
             bool isNight = IsNightTime();
@@ -110,8 +118,9 @@ namespace AfflictionsAndBuffs.Afflictions
             if (isNight && isValidWeather && isOutdoors && !alreadyActive)
             {
                 float roll = UnityEngine.Random.Range(0f, 100f);
-                if (roll <= 8f)
+                if (roll <= 20f)
                 {
+                    MelonLogger.Msg("[LunarSyndrome] Lunar influence triggered!");
                     new LunarSyndrome(AfflictionBodyArea.Chest).Start();
                 }
             }
@@ -191,8 +200,7 @@ namespace AfflictionsAndBuffs.Afflictions
         {
             private static void Postfix(BaseAi __instance)
             {
-                if (__instance == null) return;
-                if (__instance.m_AiSubType != AiSubType.Wolf) return;
+                if (__instance == null || __instance.m_AiSubType != AiSubType.Wolf) return;
 
                 if (!OriginalValues.ContainsKey(__instance))
                 {
@@ -212,8 +220,7 @@ namespace AfflictionsAndBuffs.Afflictions
         {
             private static void Postfix(BaseAi __instance)
             {
-                if (__instance == null) return;
-                if (__instance.m_AiSubType != AiSubType.Wolf) return;
+                if (__instance == null || __instance.m_AiSubType != AiSubType.Wolf) return;
 
                 if (!OriginalValues.TryGetValue(__instance, out var original))
                 {
