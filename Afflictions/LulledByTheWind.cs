@@ -48,9 +48,9 @@ namespace AfflictionsAndBuffs.Afflictions
 
             float now = GameManager.GetTimeOfDayComponent()?.GetHoursPlayedNotPaused() ?? 0f;
 
-            SaveDataManager.LulledByTheWindCooldownEndHours = now + 48f;
+            SaveDataManager.LulledByTheWindCooldownEndHours = now + 72f;
 
-            //MelonLogger.Msg($"48 cooldown started! Next at hour {SaveDataManager.LulledByTheWindCooldownEndHours:F1}");
+            //MelonLogger.Msg($"72 cooldown started! Next at hour {SaveDataManager.LulledByTheWindCooldownEndHours:F1}");
             
         }
 
@@ -72,7 +72,7 @@ namespace AfflictionsAndBuffs.Afflictions
         {
             if (LulledByTheWind.IsLulledByTheWind)
             {
-                __result *= 5f;
+                __result *= 2f;
             }
         }
     }

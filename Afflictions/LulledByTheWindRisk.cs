@@ -20,8 +20,8 @@ namespace AfflictionsAndBuffs.Afflictions
         private float m_ContinuousIndoorMinutes = 0f;
         private float m_LastUpdateHours = -1f;
 
-        private const float INDOOR_DECREASE_DELAY_MINUTES = 25f;
-        private const float SLOW_DECREASE_RATE_PER_INGAME_SECOND = 0.02f;
+        private const float INDOOR_DECREASE_DELAY_MINUTES = 40f;
+        private const float SLOW_DECREASE_RATE_PER_INGAME_SECOND = 0.03f;
         private const float OUTDOOR_INCREASE_RATE_PER_INGAME_SECOND = 0.013f;
 
         private static float s_OutdoorMinutes = 0f;
