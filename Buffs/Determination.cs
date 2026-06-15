@@ -77,6 +77,10 @@ namespace AfflictionsAndBuffs.Buffs
             yield return null;
 
             if (GameManager.GetPlayerObject() == null) yield break;
+            if (GameManager.GetPlayerManagerComponent() == null) yield break;
+
+            var mgr = AfflictionManager.GetAfflictionManagerInstance();
+            if (mgr == null || mgr.m_Afflictions == null) yield break;
 
             var buff = new Determination(AfflictionBodyArea.Chest);
             buff.Start();
