@@ -22,13 +22,13 @@ namespace AfflictionsAndBuffs.Afflictions
 
         private const float INDOOR_DECREASE_DELAY_MINUTES = 40f;
         private const float SLOW_DECREASE_RATE_PER_INGAME_SECOND = 0.03f;
-        private const float OUTDOOR_INCREASE_RATE_PER_INGAME_SECOND = 0.013f;
+        private const float OUTDOOR_INCREASE_RATE_PER_INGAME_SECOND = 0.011f;
 
         private static float s_OutdoorMinutes = 0f;
         private static float s_ContinuousIndoorMinutesForOutdoorTimer = 0f;
         private static float s_LastOutdoorUpdateHours = -1f;
-        private const float OUTDOOR_RISK_DELAY_MINUTES = 180f;
-        private const float OUTDOOR_TIMER_RESET_AFTER_INDOOR_MINUTES = 120f;
+        private const float OUTDOOR_RISK_DELAY_MINUTES = 300f;
+        private const float OUTDOOR_TIMER_RESET_AFTER_INDOOR_MINUTES = 60f;
 
         private float m_LastStatusLogTime = 0f;
 

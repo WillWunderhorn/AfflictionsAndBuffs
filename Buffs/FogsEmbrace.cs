@@ -12,7 +12,7 @@ namespace AfflictionsAndBuffs.Buffs
 {
     public class FogsEmbrace : CustomAffliction, IInstance, IBuff
     {
-        public InstanceType Type { get; set; } = InstanceType.Single;
+        public InstanceType Type { get; set; } = InstanceType.Single;
         public float Duration { get; set; } = 1f;
         public float EndTime { get; set; }
         public bool Buff { get; set; } = true;
@@ -25,7 +25,14 @@ namespace AfflictionsAndBuffs.Buffs
         private static float s_RemoveTime = -1f;
         private const float REMOVE_DELAY_MINUTES = 10f;
 
+        // 70% of normal range
+        private const float SENSE_REDUCTION_FACTOR = 0.7f;
+
         private static readonly Dictionary<BaseAi, OriginalAiValues> OriginalValues = new Dictionary<BaseAi, OriginalAiValues>();
+
+        // --- Debug DO NOT TURN it on if aaahh if... If i didn't tel you so (which i probably never did) ---
+        private const bool DebugLog = false;
+        private static readonly Dictionary<BaseAi, bool> s_LastReduceState = new Dictionary<BaseAi, bool>();
 
         public FogsEmbrace(AfflictionBodyArea bodyArea = AfflictionBodyArea.Chest)
             : base(
@@ -51,7 +58,16 @@ namespace AfflictionsAndBuffs.Buffs
         public static bool IsFogsEmbraceActive()
         {
             var mgr = AfflictionManager.GetAfflictionManagerInstance();
-            if (mgr == null || mgr.m_Afflictions == null) return false;
+            if (mgr == null)
+            {
+                if (DebugLog) MelonLogger.Msg("FogsEmbrace!! IsFogsEmbraceActive: AfflictionManager instance is null");
+                return false;
+            }
+            if (mgr.m_Afflictions == null)
+            {
+                if (DebugLog) MelonLogger.Msg("FogsEmbrace!! IsFogsEmbraceActive: m_Afflictions list is null");
+                return false;
+            }
 
             for (int i = 0; i < mgr.m_Afflictions.Count; i++)
             {
@@ -63,19 +79,34 @@ namespace AfflictionsAndBuffs.Buffs
 
         private static void StartBuff()
         {
-            if (IsFogsEmbraceActive()) return;
-            if (GameManager.GetPlayerObject() == null) return;
+            if (IsFogsEmbraceActive())
+            {
+                if (DebugLog) MelonLogger.Msg("FogsEmbrace!! StartBuff: already active, aborting");
+                return;
+            }
+            if (GameManager.GetPlayerObject() == null)
+            {
+                if (DebugLog) MelonLogger.Msg("FogsEmbrace!! StartBuff: player object is null, aborting");
+                return;
+            }
 
+            if (DebugLog) MelonLogger.Msg("FogsEmbrace!! StartBuff: queuing DoStartBuffNextFrame coroutine");
             MelonCoroutines.Start(DoStartBuffNextFrame());
         }
 
         private static IEnumerator DoStartBuffNextFrame()
         {
             yield return null;
-            if (GameManager.GetPlayerObject() == null) yield break;
+            if (GameManager.GetPlayerObject() == null)
+            {
+                if (DebugLog) MelonLogger.Msg("FogsEmbrace!! DoStartBuffNextFrame: player object null after yield, aborting");
+                yield break;
+            }
 
             var buff = new FogsEmbrace(AfflictionBodyArea.Chest);
             buff.Start();
+
+            if (DebugLog) MelonLogger.Msg($"FogsEmbrace!! DoStartBuffNextFrame: buff.Start() called, IsFogsEmbraceActive now = {IsFogsEmbraceActive()}");
         }
 
         public static void UpdateFogBuff()
@@ -100,10 +131,18 @@ namespace AfflictionsAndBuffs.Buffs
             string currentWeather = weatherComp.GetWeatherStage().ToString();
             bool isFoggy = IsFoggyWeather(currentWeather);
 
+            if (DebugLog)
+            {
+                MelonLogger.Msg($"FogsEmbrace!! UpdateFogBuff: weather='{currentWeather}' isFoggy={isFoggy} isOutdoors={isOutdoors} active={IsFogsEmbraceActive()} removeTimer={s_RemoveTime:F2} nowHours={currentHours:F2}");
+            }
+
             if (isOutdoors && isFoggy)
             {
                 if (!IsFogsEmbraceActive())
+                {
+                    if (DebugLog) MelonLogger.Msg("FogsEmbrace!! Conditions met and buff not active -> calling StartBuff()");
                     StartBuff();
+                }
 
                 s_RemoveTime = -1f;
             }
@@ -112,10 +151,12 @@ namespace AfflictionsAndBuffs.Buffs
                 if (IsFogsEmbraceActive() && s_RemoveTime < 0f)
                 {
                     s_RemoveTime = currentHours + (REMOVE_DELAY_MINUTES / 60f);
+                    if (DebugLog) MelonLogger.Msg($"FogsEmbrace!! Conditions no longer met, arming removal timer for {s_RemoveTime:F2}h");
                 }
 
                 if (s_RemoveTime > 0f && currentHours >= s_RemoveTime)
                 {
+                    if (DebugLog) MelonLogger.Msg("FogsEmbrace!!! Removal timer elapsed -> calling RemoveBuff()");
                     RemoveBuff();
                     s_RemoveTime = -1f;
                 }
@@ -135,17 +176,21 @@ namespace AfflictionsAndBuffs.Buffs
 
         private static bool IsFoggyWeather(string weatherStage)
         {
+
             return weatherStage.Contains("Fog") ||
-                   weatherStage == "DenseFog" ||
-                   weatherStage == "HeavyFog" ||
-                   weatherStage == "Blizzard" ||
-                   weatherStage == "LightFog";
+                   //weatherStage == "DenseFog" ||
+                   //weatherStage == "HeavyFog" ||
+                   weatherStage == "Blizzard";
+            //weatherStage == "LightFog";
         }
 
         private static void RemoveBuff()
         {
             var mgr = AfflictionManager.GetAfflictionManagerInstance();
-            if (mgr == null) return;
+            if (mgr == null)
+            {
+                return;
+            }
 
             for (int i = 0; i < mgr.m_Afflictions.Count; i++)
             {
@@ -176,11 +221,6 @@ namespace AfflictionsAndBuffs.Buffs
             {
                 if (__instance == null) return;
 
-                AiSubType type = __instance.m_AiSubType;
-                if (type != AiSubType.Wolf && type != AiSubType.Bear && type != AiSubType.Stag &&
-                    type != AiSubType.Rabbit && type != AiSubType.Moose && type != AiSubType.Cougar)
-                    return;
-
                 if (!OriginalValues.ContainsKey(__instance))
                 {
                     OriginalValues[__instance] = new OriginalAiValues
@@ -201,7 +241,7 @@ namespace AfflictionsAndBuffs.Buffs
         [HarmonyPatch(typeof(BaseAi), nameof(BaseAi.Update))]
         public static class DynamicFogDetectionReduction
         {
-            private static void Postfix(BaseAi __instance)
+            private static void Prefix(BaseAi __instance)
             {
                 if (__instance == null) return;
 
@@ -223,16 +263,26 @@ namespace AfflictionsAndBuffs.Buffs
 
                 bool shouldReduce = IsFogsEmbraceActive();
 
+                bool hadPrevState = s_LastReduceState.TryGetValue(__instance, out bool prevState);
+                bool stateChanged = !hadPrevState || prevState != shouldReduce;
+
+                if (DebugLog && stateChanged)
+                {
+                    MelonLogger.Msg($"FogsEmbrace!! [{__instance.m_AiSubType}] shouldReduce transitioned {(hadPrevState ? prevState.ToString() : "N/A")} -> {shouldReduce}. " +
+                        $"Before: DetectionRange={__instance.m_DetectionRange:F2} DetectionFOV={__instance.m_DetectionFOV:F2} SmellRange={__instance.m_SmellRange:F2} " +
+                        $"Original=({original.DetectionRange:F2},{original.DetectionFOV:F2},{original.SmellRange:F2})");
+                }
+
                 if (shouldReduce)
                 {
-                    __instance.m_DetectionRange = 0.7f;
-                    __instance.m_DetectionFOV = 0.7f;
-                    __instance.m_MaxPlayerApproachDistanceToInvestigateFood = 0.7f;
-                    __instance.m_SmellRange = 0.7f;
-                    __instance.m_HearFootstepsRange = 0.7f;
-                    __instance.m_HearFootstepsRangeWhileFeeding = 0.7f;
-                    __instance.m_MaxSurvivorDistanceToPlayerForTargetting = 0.7f;
-                    __instance.m_MinSmellDistance = 0.7f;
+                    __instance.m_DetectionRange = original.DetectionRange * SENSE_REDUCTION_FACTOR;
+                    __instance.m_DetectionFOV = original.DetectionFOV * SENSE_REDUCTION_FACTOR;
+                    __instance.m_MaxPlayerApproachDistanceToInvestigateFood = original.MaxPlayerApproachDistanceToInvestigateFood * SENSE_REDUCTION_FACTOR;
+                    __instance.m_SmellRange = original.SmellRange * SENSE_REDUCTION_FACTOR;
+                    __instance.m_HearFootstepsRange = original.HearFootstepsRange * SENSE_REDUCTION_FACTOR;
+                    __instance.m_HearFootstepsRangeWhileFeeding = original.HearFootstepsRangeWhileFeeding * SENSE_REDUCTION_FACTOR;
+                    __instance.m_MaxSurvivorDistanceToPlayerForTargetting = original.MaxSurvivorDistanceToPlayerForTargetting * SENSE_REDUCTION_FACTOR;
+                    __instance.m_MinSmellDistance = original.MinSmellDistance * SENSE_REDUCTION_FACTOR;
                 }
                 else
                 {
@@ -245,6 +295,8 @@ namespace AfflictionsAndBuffs.Buffs
                     __instance.m_MaxSurvivorDistanceToPlayerForTargetting = original.MaxSurvivorDistanceToPlayerForTargetting;
                     __instance.m_MinSmellDistance = original.MinSmellDistance;
                 }
+
+                s_LastReduceState[__instance] = shouldReduce;
             }
         }
     }
