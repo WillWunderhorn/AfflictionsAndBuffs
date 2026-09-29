@@ -162,7 +162,7 @@ namespace AfflictionsAndBuffs.Afflictions
 
             var risk = new LulledByTheWindRisk(AfflictionBodyArea.Chest);
             risk.Start();
-            //MelonLogger.Msg("[LulledByTheWindRisk] Risk started.");
+            //MelonLogger.Msg("LulledByTheWindRisk risk started.");
         }
 
         public static void ResetOutdoorTracking()

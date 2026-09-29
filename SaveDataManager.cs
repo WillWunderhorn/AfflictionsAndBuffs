@@ -27,7 +27,6 @@ namespace AfflictionsAndBuffs
 
         public static bool HowDidYouDoThatHasAppeared = false;
 
-        // NEW
         public static bool LunarSyndromeActive = false;
 
         internal static void OnSaveGame()
@@ -147,7 +146,7 @@ namespace AfflictionsAndBuffs
                     return;
             }
 
-            MelonLogger.Msg("[Lunar] Restoring from save");
+            //MelonLogger.Msg("Lunar Restoring from save");
 
             var syndrome = new LunarSyndrome(AfflictionBodyArea.Chest);
             syndrome.Start();

@@ -25,12 +25,15 @@ namespace AfflictionsAndBuffs.Buffs
         private static float s_RemoveTime = -1f;
         private const float REMOVE_DELAY_MINUTES = 10f;
 
+        // True during the one-frame gap between StartBuff() and the affliction actually being added
+        public static bool IsStartPending { get; private set; }
+
         // 70% of normal range
         private const float SENSE_REDUCTION_FACTOR = 0.7f;
 
         private static readonly Dictionary<BaseAi, OriginalAiValues> OriginalValues = new Dictionary<BaseAi, OriginalAiValues>();
 
-        // --- Debug DO NOT TURN it on if aaahh if... If i didn't tel you so (which i probably never did) ---
+        // --- Debug DO NOT TURN it on if aaahh if... If i didn't tell you so (which i probably never did) ---
         private const bool DebugLog = false;
         private static readonly Dictionary<BaseAi, bool> s_LastReduceState = new Dictionary<BaseAi, bool>();
 
@@ -91,6 +94,7 @@ namespace AfflictionsAndBuffs.Buffs
             }
 
             if (DebugLog) MelonLogger.Msg("FogsEmbrace!! StartBuff: queuing DoStartBuffNextFrame coroutine");
+            IsStartPending = true;
             MelonCoroutines.Start(DoStartBuffNextFrame());
         }
 
@@ -99,12 +103,14 @@ namespace AfflictionsAndBuffs.Buffs
             yield return null;
             if (GameManager.GetPlayerObject() == null)
             {
+                IsStartPending = false;
                 if (DebugLog) MelonLogger.Msg("FogsEmbrace!! DoStartBuffNextFrame: player object null after yield, aborting");
                 yield break;
             }
 
             var buff = new FogsEmbrace(AfflictionBodyArea.Chest);
             buff.Start();
+            IsStartPending = false;
 
             if (DebugLog) MelonLogger.Msg($"FogsEmbrace!! DoStartBuffNextFrame: buff.Start() called, IsFogsEmbraceActive now = {IsFogsEmbraceActive()}");
         }

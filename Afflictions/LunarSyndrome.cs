@@ -2,11 +2,12 @@
 using AfflictionComponent.Components;
 using AfflictionComponent.Enums;
 using AfflictionComponent.Interfaces;
+using AfflictionsAndBuffs.Buffs;
 using HarmonyLib;
 using Il2Cpp;
+using MelonLoader;
 using System.Collections.Generic;
 using UnityEngine;
-using MelonLoader;
 
 namespace AfflictionsAndBuffs.Afflictions
 {
@@ -36,7 +37,7 @@ namespace AfflictionsAndBuffs.Afflictions
                 true)
         {
             IsActive = true;
-            MelonLogger.Msg("[LunarSyndrome] Activated - Wolves are more alert under the moon");
+            //MelonLogger.Msg("LunarSyndrome Activated");
             InitializeExistingAnimals();
         }
 
@@ -89,7 +90,7 @@ namespace AfflictionsAndBuffs.Afflictions
             m_IndoorTimer = 0f;
             m_TargetCureDelay = -1f;
             m_LastIndoorHours = -1f;
-            MelonLogger.Msg("[LunarSyndrome] Affliction cured");
+            //MelonLogger.Msg("LunarSyndrome Cured");
         }
 
         public static void UpdateLunarSyndrome()
@@ -117,10 +118,17 @@ namespace AfflictionsAndBuffs.Afflictions
 
             if (isNight && isValidWeather && isOutdoors && !alreadyActive)
             {
-                float roll = UnityEngine.Random.Range(0f, 100f);
-                if (roll <= 20f)
+                // Now Fog's Embrace blocks Lunar Syndrome entirely
+                if (FogsEmbrace.IsFogsEmbraceActive() || FogsEmbrace.IsStartPending)
                 {
-                    MelonLogger.Msg("[LunarSyndrome] Lunar influence triggered!");
+                    //lil debug :3
+                    //MelonLogger.Msg("LunarSyndrome start attempt blocked!!!! Fog's Embrace is active.");
+                    return;
+                }
+
+                float roll = UnityEngine.Random.Range(0f, 100f);
+                if (roll <= 10f)
+                {
                     new LunarSyndrome(AfflictionBodyArea.Chest).Start();
                 }
             }
@@ -144,6 +152,7 @@ namespace AfflictionsAndBuffs.Afflictions
             var tod = GameManager.GetTimeOfDayComponent();
             if (tod == null) return false;
             float hour = tod.GetHour();
+            // between 9:30 PM and 6:30 AM
             return hour >= 21.5f || hour < 6.5f;
         }
 
